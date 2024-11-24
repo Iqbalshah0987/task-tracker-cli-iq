@@ -1,11 +1,14 @@
 const fs = require('fs');
-const file_path = "./tasks.json";
+const path = require('path');
+const os = require('os');
+const file_path = path.join(os.homedir(), 'tasks.json');
+const idTrackerPath = path.join(os.homedir(), 'id_tracker.json');
+// const file_path = "./tasks.json";
+// console.log(file_path);
 
 
 function getNextId() {
-    let idTrackerPath = './id_tracker.json';
     let trackerData = { lastId: 0 };
-
     if (fs.existsSync(idTrackerPath)) {
         trackerData = JSON.parse(fs.readFileSync(idTrackerPath, { encoding: 'utf8' }));
     }
